@@ -1,0 +1,134 @@
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	overflow: hidden;
+}
+
+/* contact photo in grid */
+img.contact_photo {
+	position: relative;
+	border: 1px solid white;
+	border-radius: 50%;
+	width: 38px;
+	height: 38px;
+	margin: 4px;
+	background-color: white;
+}
+
+div.gridbox_dhx_web.gridbox table.obj.row20px tr.rowselected td {
+	background-color: rgb(225, 244, 255)!important;
+	border-right-color: rgb(225, 244, 255)!important;
+}
+
+/* contact photo in form */
+img.form_photo {
+	position: relative;
+	border-radius: 50%;
+	width: 150px;
+	height: 150px;
+	border: 1px solid #cecece;
+}
+
+/* events dataview */
+div.event_image {
+	text-align: center;
+}
+div.event_title {
+	font-size: 19px;
+	font-weight: bold;
+	margin: 10px 0px 5px 0px;
+}
+div.event_date {
+	font-size: 14px;
+	margin: 5px 0px;
+}
+div.event_place {
+	font-size: 12px;
+	margin: 5px 0px;
+}
+.dhx_dataview .dhx_dataview_default_item,
+.dhx_dataview .dhx_dataview_default_item_selected {
+	border-width: 0px !important;
+}
+
+/* settings dataview */
+div.settings_image {
+	float: left;
+	width: 120px;
+}
+div.settings_title {
+	position: absolute;
+	top: 14px;
+	left: 120px;
+	font-size: 18px;
+	font-weight: bold;
+}
+div.settings_descr {
+	font-size: 14px;
+	font-weight: normal;
+	margin-top: 3px;
+}
+
+/* cancel button in form */
+.dhxform_obj_dhx_web div.gray_btn div.dhxform_btn {
+	background-color: #c0c0c0;
+}
+
+/* hide toolbar borders for phone */
+body.device_type_phone div.dhx_cell_toolbar_def {
+	border-width: 0px !important;
+}
+/* events item sizes for phone/tablet */
+body.device_type_phone div.event_image img,
+body.device_type_tablet div.event_image img {
+	width: 100%;
+	max-width: 100%;
+}
+body.device_type_phone div.event_title,
+body.device_type_tablet div.event_title {
+	font-size: 14px;
+	margin: 6px 0px 3px 0px;
+}
+body.device_type_phone div.event_date,
+body.device_type_tablet div.event_date {
+	font-size: 13px;
+	margin: 3px 0px;
+}
+body.device_type_phone div.event_place,
+body.device_type_tablet div.event_place {
+	font-size: 12px;
+	margin: 3px 0px;
+}
+/* settings for phone */
+body.device_type_phone div.settings_image img {
+	width: 80px;
+	max-width: 80px;
+}
+body.device_type_phone div.settings_title {
+	left: 100px;
+	top: 9px;
+}
+/* wrap in form */
+.dhxform_obj_dhx_web div.dhxform_label div.dhxform_label_nav_link,
+.dhxform_obj_dhx_web div.dhxform_label div.dhxform_label_nav_link:visited,
+.dhxform_obj_dhx_web div.dhxform_label div.dhxform_label_nav_link:active,
+.dhxform_obj_dhx_web div.dhxform_label div.dhxform_label_nav_link:hover {
+	white-space: normal!important;
+}
+/* form parent div */
+div.form_div {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	overflow: auto;
+}
+div.form_div > div {
+	margin-bottom: 20px !important;
+}
+
+/* dataview selection */
+.dhx_dataview_default_item_selected {
+	background-color: #e1f4ff !important
+}

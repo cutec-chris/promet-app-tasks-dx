@@ -1,0 +1,45 @@
+.app_loader {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	opacity: 1;
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+	-webkit-transition: opacity 0.3s;
+	-moz-transition: opacity 0.3s;
+	-ms-transition: opacity 0.3s;
+	-o-transition: opacity 0.3s;
+	transition: opacity 0.3s;
+	z-index: 1999;
+}
+.app_loader.app_loader_hidden {
+	opacity: 0;
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+}
+.app_loader_logo {
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	width: 145px;
+	height: 150px;
+	background-image: url(../../imgs/loader/app_logo.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+.app_loader_icon {
+	position: absolute;
+	width: 100%;
+	height: 32px;
+	bottom: 0px;
+	background-image: url(../../imgs/loader/loader.gif);
+	background-position: center center;
+	background-repeat: no-repeat;
+}
