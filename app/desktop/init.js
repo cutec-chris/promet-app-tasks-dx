@@ -11,8 +11,6 @@ function appInit() {
 		template: "tiles",
 		items: [
 			{id: "contacts", text: "Contacts", icon: "contacts.png"},
-			{id: "projects", text: "Projects", icon: "projects.png"},
-			{id: "events",   text: "Events",   icon: "events.png"  },
 			{id: "settings", text: "Settings", icon: "settings.png"}
 		]
 	});

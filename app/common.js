@@ -6,7 +6,7 @@ var A = {
 	cache: true,
 	modules: {
 		dhtmlx: ["dhtmlx"],
-		app: ["init", "contacts"],
+		app: ["init", "contacts", "settings"],
 		common: ["settings_forms"]
 	}
 };

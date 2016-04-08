@@ -33,9 +33,9 @@ function settingsInit(cell) {
 			edit: false
 		});
 		
-		settingsDataView.load(A.server+"settings.xml?type="+A.deviceType, function(){
-			settingsDataView.select("contacts");
-		});
+		//settingsDataView.load(A.server+"settings.xml?type="+A.deviceType, function(){
+		//	settingsDataView.select("contacts");
+		//});
 		
 		settingsDataView.attachEvent("onAfterSelect", function(id){
 			// attach form
