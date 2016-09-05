@@ -1,18 +1,42 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Aufgaben</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-  <link rel="stylesheet" type="text/css" href="app/common.css"/>
-  <link rel="stylesheet" type="text/css" href="app/loader.css"/>
-  <link rel="stylesheet" type="text/css" href="dhtmlx/dhtmlx.css"/> 
-  <script type="text/javascript" src="require/require.js"></script>
-  <script type="text/javascript" src="app/loader.js"></script>
-  <script type="text/javascript" src="app/common.js"></script>
-</head>
-<body>
-	
-</body>
+  <head>
+    <title>Contact Manager</title>
+    <script src="codebase/dhtmlx.js" type="text/javascript"></script>
+    <link rel="STYLESHEET" type="text/css" href="codebase/dhtmlx.css">
+    <link rel="STYLESHEET" type="text/css" href="codebase/dhtmlx.css">
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0px;
+            background-color: #EBEBEB;
+        }
+    </style>
+    <script type="text/javascript">
+        dhtmlxEvent(window,"load",function(){                          //provides your script as a handler of the 'onload' HTML event
+	window.dhx4.skin = 'material';
+	var main_layout = new dhtmlXLayoutObject(document.body, '1C');
+
+	var a = main_layout.cells('a');
+	a.hideHeader();
+	var sidebar_2 = a.attachSidebar({template: 'details', width: '200', icons_path: './codebase/imgs_sidebar/', autohide: '', header: ''});
+	sidebar_2.addItem({id: 'sidebar_item_2', text: 'sidebar_item_2', icon: 'sidebar_item_icon.png'});
+	var sidebar_item_2 = sidebar_2.cells('sidebar_item_2');
+	sidebar_item_2.setActive();
+	var grid_2 = sidebar_item_2.attachGrid();
+	grid_2.setIconsPath('./codebase/imgs/');
+
+	grid_2.setHeader(["Column 1","Column 2"]);
+	grid_2.setColTypes("ro,ro");
+
+	grid_2.setColSorting('str,str');
+	grid_2.setInitWidths('*,*');
+	grid_2.init();
+        });
+    </script>
+  </head>
+  <body>
+  </body>
 </html>
