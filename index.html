@@ -21,19 +21,32 @@
 
 	var a = main_layout.cells('a');
 	a.hideHeader();
-	var sidebar_2 = a.attachSidebar({template: 'details', width: '200', icons_path: './codebase/imgs_sidebar/', autohide: '', header: ''});
-	sidebar_2.addItem({id: 'sidebar_item_2', text: 'sidebar_item_2', icon: 'sidebar_item_icon.png'});
-	var sidebar_item_2 = sidebar_2.cells('sidebar_item_2');
-	sidebar_item_2.setActive();
-	var grid_2 = sidebar_item_2.attachGrid();
-	grid_2.setIconsPath('./codebase/imgs/');
+	var sbMain = a.attachSidebar({template: 'text', width: '200', icons_path: './codebase/imgs_sidebar/', autohide: '', header: ''});
+	sbMain.addItem({id: 'siTasks', text: 'Aufgaben', icon: ''});
+	var siTasks = sbMain.cells('siTasks');
+	siTasks.setActive();
+	var gTasks = siTasks.attachGrid();
+	gTasks.setIconsPath('./codebase/imgs/');
 
-	grid_2.setHeader(["Column 1","Column 2"]);
-	grid_2.setColTypes("ro,ro");
+	gTasks.setHeader(["Aufgabe","Projekt","Bis"]);
+	gTasks.setColTypes("edtxt,edtxt,dhxCalendar");
 
-	grid_2.setColSorting('str,str');
-	grid_2.setInitWidths('*,*');
-	grid_2.init();
+	gTasks.setColSorting('str,str,date');
+	gTasks.enableValidation(true, false);
+gTasks.setColValidators(',,ValidDate');
+	gTasks.setColumnMinWidth('100', 0);
+	gTasks.setColumnMinWidth('100', 1);
+	gTasks.setInitWidths('*,*,120');
+	gTasks.init();
+
+        var dsTasks = new dhtmlXDataStore({ url:"http://127.0.0.1:8085/masterdata/list.json", datatype:"json" });
+        dsTasks.attachEvent("onLoadError", function(text, xml, loader){
+          dhtmlx.message("The service is currently offline...");
+          loader.setRequestHeader("Authorization", "Basic " + btoa(user + ":" + pass));
+          loader.send(data);
+        });
+        gTasks.sync(dsTasks);
+
         });
     </script>
   </head>
