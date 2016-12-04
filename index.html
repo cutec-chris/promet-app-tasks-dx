@@ -48,18 +48,17 @@
             $.ajax
             ({
               type: "GET",
-              url: "http://localhost:8085/tasks/list.json",
-              dataType: 'json',
+              url: "http://localhost:8085/task/list.json",
+              dataType: "json",
               async: false,
               headers: {
                 "Authorization": "Basic " + btoa(AvammUser + ":" + AvammPasswd)
                 },
-              data: '',
               success: function (){
-                gTasks.parse();
+                gTasks.parse(data);
               }
             });
-            //gTasks.load('http://localhost:8085/tasks/list.json');
+            //gTasks.load('http://localhost:8085/task/list.json');
           }
         }
 
