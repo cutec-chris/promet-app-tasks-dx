@@ -3,6 +3,7 @@
   <head>
     <title>Contact Manager</title>
     <script src="codebase/dhtmlx.js" type="text/javascript"></script>
+    <script src="codebase/ext/zepto.min.js" type="text/javascript"></script>
     <link rel="STYLESHEET" type="text/css" href="codebase/dhtmlx.css">
     <link rel="STYLESHEET" type="text/css" href="codebase/dhtmlx.css">
     <style>
@@ -15,8 +16,62 @@
         }
     </style>
     <script type="text/javascript">
+        var AvammUser,AvammPasswd;
+        function DoLogin() {
+          var myForm, formData;
+	  var dhxWins, w1;
+	  formData = [
+	    {type: "settings", position: "label-left", labelWidth: 100, inputWidth: 120},
+	    {type: "block", inputWidth: "auto", offsetTop: 12, list: [
+	           {type: "input",name: "eUser", label: "Login", value: "p_rossi"},
+		   {type: "password",name: "ePassword", label: "Password", value: "123"},
+		   //{type: "checkbox", label: "Remember me", checked: true},
+		   {type: "button", value: "Login", offsetLeft: 70, offsetTop: 14}
+		   ]}
+		   ];
+	    dhxWins = new dhtmlXWindows();
+	    //dhxWins.attachViewportTo("vp");
+	    w1 = dhxWins.createWindow("w1", 10, 10, 300, 250);
+	    w1.denyResize();
+            w1.centerOnScreen();
+	    myForm = w1.attachForm(formData, true);
+            myForm.attachEvent("onButtonClick", function(id){
+              AvammUser = myForm.getInput("eUser").value;
+              AvammPasswd = myForm.getInput("ePassword").value;
+              myForm.Hide;
+              LoadTasks();
+            });
+        }
+
+        function LoadTasks() {
+          if (AvammUser) {
+            $.ajax
+            ({
+              type: "GET",
+              url: "http://localhost:8085/tasks/list.json",
+              dataType: 'json',
+              async: false,
+              headers: {
+                "Authorization": "Basic " + btoa(AvammUser + ":" + AvammPasswd)
+                },
+              data: '',
+              success: function (){
+                gTasks.parse();
+              }
+            });
+            //gTasks.load('http://localhost:8085/tasks/list.json');
+          }
+        }
+
+        function make_base_auth(user, password) {
+          var tok = user + ':' + password;
+          var hash = Base64.encode(tok);
+          return "Basic " + hash;
+        }
+
         dhtmlxEvent(window,"load",function(){                          //provides your script as a handler of the 'onload' HTML event
 	window.dhx4.skin = 'material';
+
 	var main_layout = new dhtmlXLayoutObject(document.body, '1C');
 
 	var a = main_layout.cells('a');
@@ -33,20 +88,13 @@
 
 	gTasks.setColSorting('str,str,date');
 	gTasks.enableValidation(true, false);
-gTasks.setColValidators(',,ValidDate');
+        gTasks.setColValidators(',,ValidDate');
 	gTasks.setColumnMinWidth('100', 0);
 	gTasks.setColumnMinWidth('100', 1);
 	gTasks.setInitWidths('*,*,120');
 	gTasks.init();
 
-        var dsTasks = new dhtmlXDataStore({ url:"http://127.0.0.1:8085/masterdata/list.json", datatype:"json" });
-        dsTasks.attachEvent("onLoadError", function(text, xml, loader){
-          dhtmlx.message("The service is currently offline...");
-          loader.setRequestHeader("Authorization", "Basic " + btoa(user + ":" + pass));
-          loader.send(data);
-        });
-        gTasks.sync(dsTasks);
-
+        DoLogin();
         });
     </script>
   </head>
