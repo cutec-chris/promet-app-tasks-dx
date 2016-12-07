@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Contact Manager</title>
+    <title>Task App</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
     <script src="codebase/dhtmlx.js" type="text/javascript"></script>
     <script src="codebase/ext/zepto.min.js" type="text/javascript"></script>
     <link rel="STYLESHEET" type="text/css" href="codebase/dhtmlx.css">
@@ -45,12 +47,12 @@
 
         function LoadTasks() {
           if (AvammUser) {
-            $.ajax
+            dhx4.ajax.query
             ({
               type: "GET",
               url: "http://localhost:8085/task/list.json",
               dataType: "json",
-              async: false,
+              async: true,
               headers: {
                 "Authorization": "Basic " + btoa(AvammUser + ":" + AvammPasswd)
                 },
@@ -60,12 +62,6 @@
             });
             //gTasks.load('http://localhost:8085/task/list.json');
           }
-        }
-
-        function make_base_auth(user, password) {
-          var tok = user + ':' + password;
-          var hash = Base64.encode(tok);
-          return "Basic " + hash;
         }
 
         dhtmlxEvent(window,"load",function(){                          //provides your script as a handler of the 'onload' HTML event
