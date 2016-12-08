@@ -1,3 +1,6 @@
 [submodule "dhtmlx"]
 	path = dhtmlx
 	url = https://github.com/DHTMLX/dhtmlx-suite-gpl.git
+[submodule "spapp"]
+	path = spapp
+	url = https://github.com/cutec-chris/spapp.git
