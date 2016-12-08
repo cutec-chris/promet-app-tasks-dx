@@ -4,3 +4,6 @@
 [submodule "spapp"]
 	path = spapp
 	url = https://github.com/cutec-chris/spapp.git
+[submodule "appbase"]
+	path = appbase
+	url = https://github.com/cutec-chris/promet-appbase.git
