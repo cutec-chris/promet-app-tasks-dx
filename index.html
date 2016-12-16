@@ -4,9 +4,8 @@
     <title>Task App</title>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
-    <script src="spapp/spapp.js" type="text/javascript"></script>
     <script src="codebase/dhtmlx.js" type="text/javascript"></script>
-    <script src="promet/promet.js" type="text/javascript"></script>
+    <script src="appbase/promet.js" type="text/javascript"></script>
     <link rel="STYLESHEET" type="text/css" href="codebase/dhtmlx.css">
     <style>
         html, body {
@@ -24,97 +23,23 @@
 	    top: -100px;
 	    font-size: 1px;
 	}
-	div.login_form {
-	    position: relative;
-	    margin-top: 200px;
-	    margin-left: auto;
-	    margin-right: auto;
-	    height: 205px;
-	    width: 300px;
-	    box-shadow: 0px 0px 8px rgba(127, 127, 127, 0.4);
-	    border: 1px solid #c0c0c0;
-	    border-radius: 2px;
-	    background-color: white;
-	}
-	</style>
+	.dhxsidebar_tpl_text div.dhxsidebar_item {
+    	height: 43px;
+     	line-height: 43px;
+    }	
+    </style>
     <script type="text/javascript">
-        var AvammUser,AvammPasswd;
-        function DoLogin() {
-          var myForm, formData;
-	  var dhxWins, w1;
-	  formData = [
-	    {type: "settings", position: "label-left", labelWidth: 100, inputWidth: 120},
-	    {type: "block", inputWidth: "auto", offsetTop: 12, list: [
-	           {type: "input",name: "eUser", label: "Login", value: "p_rossi"},
-		   {type: "password",name: "ePassword", label: "Password", value: "123"},
-		   //{type: "checkbox", label: "Remember me", checked: true},
-		   {type: "button", value: "Login", offsetLeft: 70, offsetTop: 14}
-		   ]}
-		   ];
-	    dhxWins = new dhtmlXWindows();
-	    //dhxWins.attachViewportTo("vp");
-	    w1 = dhxWins.createWindow("w1", 10, 10, 300, 250);
-	    w1.denyResize();
-            w1.centerOnScreen();
-	    myForm = w1.attachForm(formData, true);
-            myForm.attachEvent("onButtonClick", function(id){
-              AvammUser = myForm.getInput("eUser").value;
-              AvammPasswd = myForm.getInput("ePassword").value;
-              myForm.Hide;
-              LoadTasks();
-            });
-        }
 
-        function LoadTasks() {
-          if (AvammUser) {
-            dhx4.ajax.query
-            ({
-              type: "GET",
-              url: "http://localhost:8085/task/list.json",
-              dataType: "json",
-              async: true,
-              headers: {
-                "Authorization": "Basic " + btoa(AvammUser + ":" + AvammPasswd)
-                },
-              success: function (data){
-                document.getElementById("realForm").submit();
-                gTasks.parse(data);
-              }
-            });
-            //gTasks.load('http://localhost:8085/task/list.json');
-          }
-        }
+    dhtmlxEvent(window,"load",function(){                          //provides your script as a handler of the 'onload' HTML event
 
-        dhtmlxEvent(window,"load",function(){                          //provides your script as a handler of the 'onload' HTML event
-	window.dhx4.skin = 'material';
+    InitAvammApp();
+    RegisterAvammAppPage('Aufgaben','tasks','tasks/tasks.html');
 
-	var main_layout = new dhtmlXLayoutObject(document.body, '1C');
-
-	var a = main_layout.cells('a');
-	a.hideHeader();
-	var sbMain = a.attachSidebar({template: 'text', width: '200', icons_path: './codebase/imgs_sidebar/', autohide: '', header: ''});
-	sbMain.addItem({id: 'siTasks', text: 'Aufgaben', icon: ''});
-	var siTasks = sbMain.cells('siTasks');
-	siTasks.setActive();
-	var gTasks = siTasks.attachGrid();
-	gTasks.setIconsPath('./codebase/imgs/');
-
-	gTasks.setHeader(["Aufgabe","Projekt","Bis"]);
-	gTasks.setColTypes("edtxt,edtxt,dhxCalendar");
-
-	gTasks.setColSorting('str,str,date');
-	gTasks.enableValidation(true, false);
-        gTasks.setColValidators(',,ValidDate');
-	gTasks.setColumnMinWidth('100', 0);
-	gTasks.setColumnMinWidth('100', 1);
-	gTasks.setInitWidths('*,*,120');
-	gTasks.init();
-
-        DoLogin();
-        });
+    });
     </script>
   </head>
   <body>
+
     <div class="login_form">
       <form id="realForm" action="check.php" method="POST" target="submit_ifr">
       <div id="dhxForm"></div>
