@@ -1,31 +1,30 @@
 <html>
 <head>
+    <script src="../codebase/dhtmlx.js" type="text/javascript"></script>
+    <script src="appbase/promet.js" type="text/javascript"></script>
     <script>
 
-        function myFunc() {
-            console.log("I'm attached function");
-        }
+        //function myFunc() {
+      console.log("I'm attached function");
+      var siTasks = dhxComponent.cells('siTasks');
+      siTasks.setActive();
+      var gTasks = siTasks.attachGrid();
+      gTasks.setIconsPath('./codebase/imgs/');
 
-  	var siTasks = sbMain.cells('siTasks');
-	siTasks.setActive();
-	var gTasks = siTasks.attachGrid();
-	gTasks.setIconsPath('./codebase/imgs/');
+      gTasks.setHeader(["Aufgabe","Projekt","Bis"]);
+      gTasks.setColTypes("edtxt,edtxt,dhxCalendar");
 
-	gTasks.setHeader(["Aufgabe","Projekt","Bis"]);
-	gTasks.setColTypes("edtxt,edtxt,dhxCalendar");
+      gTasks.setColSorting('str,str,date');
+      gTasks.enableValidation(true, false);
+      gTasks.setColValidators(',,ValidDate');
+      gTasks.setColumnMinWidth('100', 0);
+      gTasks.setColumnMinWidth('100', 1);
+      gTasks.setInitWidths('*,*,120');
+      gTasks.init();
+        //}
 
-	gTasks.setColSorting('str,str,date');
-	gTasks.enableValidation(true, false);
-        gTasks.setColValidators(',,ValidDate');
-	gTasks.setColumnMinWidth('100', 0);
-	gTasks.setColumnMinWidth('100', 1);
-	gTasks.setInitWidths('*,*,120');
-	gTasks.init();
     </script>
 </head>
 <body>
-    <div id="attachedObject">
-        Some text here
-    </div>
 </body>
 </html>
