@@ -1,12 +1,11 @@
-<html>
+<!DOCTYPE html>
+<html lang="de">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <script src="../codebase/dhtmlx.js" type="text/javascript"></script>
     <script src="appbase/promet.js" type="text/javascript"></script>
     <script>
-
-        //function myFunc() {
-      console.log("I'm attached function");
-      var siTasks = dhxComponent.cells('siTasks');
+      var siTasks = window.parent.sbMain.cells('sitasks');
       siTasks.setActive();
       var gTasks = siTasks.attachGrid();
       gTasks.setIconsPath('./codebase/imgs/');
@@ -21,8 +20,6 @@
       gTasks.setColumnMinWidth('100', 1);
       gTasks.setInitWidths('*,*,120');
       gTasks.init();
-        //}
-
     </script>
 </head>
 <body>
