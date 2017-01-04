@@ -3,10 +3,23 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <script src="../codebase/dhtmlx.js" type="text/javascript"></script>
+    <link rel="STYLESHEET" type="text/css" href="../codebase/dhtmlx.css">
     <script>
       var siTasks = window.parent.sbMain.cells('sitasks');
-      //siTasks.setActive();
-      var gTasks = siTasks.attachGrid();
+      var tbToolbar = siTasks.attachToolbar({
+        parent:"pToolbar",
+          items:[
+            {id: "new", type: "button", text: "Neu", img: "fa fa-file-o"},
+            {id: "sep1", type: "separator" },
+            //{id: "open", type: "button", img: "open.gif"},
+            //{id: "autosave", type: "buttonTwoState", text: "Autosave", img: "save.gif"},
+            //{id: "inp", type: "buttonInput", text: "Input"},
+            //{id: "sld", type: "slider", text_min: "10 MBit", text_max: "100 MBit"},
+            //{id: "info", type: "text", text: "dhtmlxToolbar Demo"}
+          ],
+        iconset: "awesome"
+      });
+      /*
       gTasks.setIconsPath('./codebase/imgs/');
 
       gTasks.setHeader(["Aufgabe","Projekt","Bis"]);
@@ -19,8 +32,17 @@
       gTasks.setColumnMinWidth('100', 1);
       gTasks.setInitWidths('*,*,120');
       gTasks.init();
+      */
     </script>
 </head>
 <body>
+  <div id="pToolbar"></div>
+  <table class='dhtmlxGrid' name='gTasks' width='100%'>
+    <tr>
+        <td align="left">Aufgabe</td>
+        <td type="co" sort="str">Projekt</td>
+        <td type="date">Bis</td>
+    </tr>
+  </table>
 </body>
 </html>
