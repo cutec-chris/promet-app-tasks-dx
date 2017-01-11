@@ -29,8 +29,8 @@
       gTasks.enableAutoHeight(true);
       gTasks.setSizes();
       gTasks.setHeader(["Aufgabe","Projekt","Bis"]);
-      gTasks.setColTypes("edtxt,edtxt,dhxCalendar");
-
+      gTasks.setColTypes("edtxt,co,dhxCalendar");
+      var cbProject = myGrid.getCombo(2);
       gTasks.setColSorting('str,str,date');
       gTasks.enableValidation(true, false);
       gTasks.setColValidators(',,ValidDate');
