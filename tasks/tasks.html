@@ -5,11 +5,16 @@
     <script src="../codebase/dhtmlx.js" type="text/javascript"></script>
     <link rel="STYLESHEET" type="text/css" href="../codebase/dhtmlx.css">
     <script>
+      function RefreshTasks() {
+        gTasks.addRow(gTasks.uid(),"The Rainmaker,John Grisham,7.99");
+      }
+
       var siTasks = window.parent.sbMain.cells('sitasks');
       var tbToolbar = siTasks.attachToolbar({
         parent:"pToolbar",
           items:[
             {id: "new", type: "button", text: "Neu", img: "fa fa-file-o"},
+            {id: "refresh", type: "button", text: "Aktualisieren", img: "fa fa-file-o"},
             {id: "sep1", type: "separator" },
             //{id: "open", type: "button", img: "open.gif"},
             //{id: "autosave", type: "buttonTwoState", text: "Autosave", img: "save.gif"},
@@ -19,9 +24,10 @@
           ],
         iconset: "awesome"
       });
-      /*
-      gTasks.setIconsPath('./codebase/imgs/');
-
+      var gTasks = siTasks.attachGrid('pTasks');
+      gTasks.enableAutoWidth(true);
+      gTasks.enableAutoHeight(true);
+      gTasks.setSizes();
       gTasks.setHeader(["Aufgabe","Projekt","Bis"]);
       gTasks.setColTypes("edtxt,edtxt,dhxCalendar");
 
@@ -32,17 +38,11 @@
       gTasks.setColumnMinWidth('100', 1);
       gTasks.setInitWidths('*,*,120');
       gTasks.init();
-      */
+      RefreshTasks();
     </script>
 </head>
 <body>
   <div id="pToolbar"></div>
-  <table class='dhtmlxGrid' name='gTasks' width='100%'>
-    <tr>
-        <td align="left">Aufgabe</td>
-        <td type="co" sort="str">Projekt</td>
-        <td type="date">Bis</td>
-    </tr>
-  </table>
+  <div id="pTasks"></div>
 </body>
 </html>
