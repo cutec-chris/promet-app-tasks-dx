@@ -6,16 +6,20 @@
     <link rel="STYLESHEET" type="text/css" href="../codebase/dhtmlx.css">
     <script>
       function RefreshTasks() {
-        gTasks.addRow(gTasks.uid(),"The Rainmaker,John Grisham,7.99");
+        siTasks.progressOn();
+        console.log("Refresh Tasks");
+        gTasks.addRow(gTasks.uid(),"The Rainmaker,John Grisham,1.1.2012");
+        siTasks.progressOff();
       }
 
+      console.log("Loading Tasks Page...");
       var siTasks = window.parent.sbMain.cells('sitasks');
       var tbToolbar = siTasks.attachToolbar({
         parent:"pToolbar",
           items:[
-            {id: "new", type: "button", text: "Neu", img: "fa fa-file-o"},
-            {id: "refresh", type: "button", text: "Aktualisieren", img: "fa fa-file-o"},
-            {id: "sep1", type: "separator" },
+             {id: "new", type: "button", text: "Neu", img: "fa fa-file-o"}
+            ,{id: "sep1", type: "separator" }
+            ,{id: "refresh", type: "button", text: "Aktualisieren", img: "fa fa-file-o"}
             //{id: "open", type: "button", img: "open.gif"},
             //{id: "autosave", type: "buttonTwoState", text: "Autosave", img: "save.gif"},
             //{id: "inp", type: "buttonInput", text: "Input"},
@@ -30,7 +34,15 @@
       gTasks.setSizes();
       gTasks.setHeader(["Aufgabe","Projekt","Bis"]);
       gTasks.setColTypes("edtxt,co,dhxCalendar");
-      var cbProject = myGrid.getCombo(2);
+      var cbProject = gTasks.getCombo(2);
+/*
+      cbProject.attachEvent("onOpen", function(){
+        //TODO:fill with first Project Items
+      });
+      cbProject.attachEvent("onChange", function(value, text){
+        //TODO:fill with Project Items based on text
+      });
+*/
       gTasks.setColSorting('str,str,date');
       gTasks.enableValidation(true, false);
       gTasks.setColValidators(',,ValidDate');
