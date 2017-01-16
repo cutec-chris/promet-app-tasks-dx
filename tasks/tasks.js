@@ -1,21 +1,23 @@
 function RefreshTasks() {
   siTasks.progressOn();
   console.log("Refresh Tasks");
-  gTasks.addRow(gTasks.uid(),"0,The Rainmaker,John Grisham,2012/01/01");
+  gTasks.sync(dsTasks);
   siTasks.progressOff();
 }
 function AddTask() {
   console.log("New Task");
   var aId = gTasks.uid();
-  gTasks.addRow(aId,",,");
+  dsTasks.add({id:aId})
+  gTasks.sync(dsTasks);
   gTasks.selectCell(gTasks.getRowIndex(aId),1);
   window.setTimeout(function(){
     gTasks.editCell();
-    gTasks.enableKeyboardSupport(false);
+    gTasks.enableKeyboardSupport(true);
+    gTasks.setActive();
   },1);
 }
 
-var siTasks,tbToolbar,gTasks;
+var siTasks,tbToolbar,gTasks,dsTasks;
 
 dhtmlxEvent(window,"load",function(){                          //provides your script as a handler of the 'onload' HTML event
   console.log("Loading Tasks Page...");
@@ -47,8 +49,9 @@ dhtmlxEvent(window,"load",function(){                          //provides your s
   //gTasks.enableAutoHeight(true);
   gTasks.setSizes();
   gTasks.setHeader(["erledigt","Aufgabe","Projekt","Bis"]);
+  gTasks.setColumnIds('DONE,SUMMARY,PROJECT,DUEDATE')
   gTasks.setColTypes("ch,edtxt,co,dhxCalendar");
-  gTasks.enableEditEvents(false,true,true);
+  //gTasks.enableEditEvents(false,true,true);
   var cbProject = gTasks.getCombo(2);
   /*
   if (cbProject) {
@@ -62,13 +65,16 @@ dhtmlxEvent(window,"load",function(){                          //provides your s
   */
   gTasks.setDateFormat("%d.%m.%Y");
   gTasks.setColSorting('ch,str,str,date');
-  gTasks.enableValidation(false,false,true, false);
-  gTasks.setColValidators(',,,ValidDate');
+  gTasks.enableValidation(false,false,true,false);
+  gTasks.setColValidators(',,,');
   gTasks.setColumnMinWidth('30', 0);
   gTasks.setColumnMinWidth('100', 1);
   gTasks.setColumnMinWidth('100', 2);
   gTasks.setInitWidths('50,*,*,120');
   //gTasks.attachFooter(",,,#stat_max");
   gTasks.init();
+
+  dsTasks = newPrometDataStore('tasks');
+
   RefreshTasks();
 });
