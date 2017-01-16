@@ -31,19 +31,20 @@
     </style>
     <script type="text/javascript">
     dhtmlxEvent(window,"load",function(){                          //provides your script as a handler of the 'onload' HTML event
+      console.log('Loading App...');
       InitAvammApp();
-      RegisterAvammAppPage('Aufgaben','tasks','tasks/tasks.html');
       StartAvammApp();
     });
     </script>
   </head>
   <body>
      <div id="sbMain"></div>
-    <div class="login_form">
-      <form id="realForm" action="check.php" method="POST" target="submit_ifr">
-      <div id="dhxForm"></div>
-      </form>
+     <div class="login_form">
+       <form id="realForm" action="check.php" method="POST" target="submit_ifr">
+       <div id="dhxForm"></div>
+       </form>
     </div>
     <iframe border="0" frameBorder="0" name="submit_ifr" class="submit_iframe"></iframe>
+    <script src="tasks/tasks.js" type="text/javascript"></script>
   </body>
 </html>
