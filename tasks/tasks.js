@@ -1,17 +1,17 @@
 function RefreshTasks() {
   siTasks.progressOn();
   console.log("Refresh Tasks");
-  gTasks.addRow(gTasks.uid(),"1,The Rainmaker,John Grisham,1.1.2012");
+  gTasks.addRow(gTasks.uid(),"0,The Rainmaker,John Grisham,2012/01/01");
   siTasks.progressOff();
 }
 function AddTask() {
   console.log("New Task");
   var aId = gTasks.uid();
   gTasks.addRow(aId,",,");
-  gTasks.selectRowById(aId);
+  gTasks.selectCell(gTasks.getRowIndex(aId),1);
   window.setTimeout(function(){
     gTasks.editCell();
-    console.log('Cell should be in edit mode');
+    gTasks.enableKeyboardSupport(false);
   },1);
 }
 
@@ -43,8 +43,8 @@ dhtmlxEvent(window,"load",function(){                          //provides your s
 		});
   gTasks = siTasks.attachGrid({parent:"pTasks"});
   gTasks.setImagePath("codebase/imgs/");
-  gTasks.enableAutoWidth(true);
-  gTasks.enableAutoHeight(true);
+  //gTasks.enableAutoWidth(true);
+  //gTasks.enableAutoHeight(true);
   gTasks.setSizes();
   gTasks.setHeader(["erledigt","Aufgabe","Projekt","Bis"]);
   gTasks.setColTypes("ch,edtxt,co,dhxCalendar");
@@ -68,7 +68,7 @@ dhtmlxEvent(window,"load",function(){                          //provides your s
   gTasks.setColumnMinWidth('100', 1);
   gTasks.setColumnMinWidth('100', 2);
   gTasks.setInitWidths('50,*,*,120');
-  gTasks.attachFooter(",,,#stat_max");
+  //gTasks.attachFooter(",,,#stat_max");
   gTasks.init();
   RefreshTasks();
 });
