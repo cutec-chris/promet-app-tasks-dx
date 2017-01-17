@@ -19,7 +19,7 @@ function AddTask() {
 
 var siTasks,tbToolbar,gTasks,dsTasks;
 
-dhtmlxEvent(window,"load",function(){                          //provides your script as a handler of the 'onload' HTML event
+dhtmlxEvent(window,"load",function(){
   console.log("Loading Tasks Page...");
   sbMain.addItem({id: 'siTasks', text: 'Aufgaben', icon: ''});
   siTasks = window.parent.sbMain.cells('siTasks');
@@ -66,12 +66,18 @@ dhtmlxEvent(window,"load",function(){                          //provides your s
   gTasks.setDateFormat("%d.%m.%Y");
   gTasks.setColSorting('ch,str,str,date');
   gTasks.enableValidation(false,false,true,false);
-  gTasks.setColValidators(',,,');
+  //gTasks.setColValidators(",NotEmpty,,");
   gTasks.setColumnMinWidth('30', 0);
   gTasks.setColumnMinWidth('100', 1);
   gTasks.setColumnMinWidth('100', 2);
   gTasks.setInitWidths('50,*,*,120');
   //gTasks.attachFooter(",,,#stat_max");
+  gTasks.attachEvent("onEditCell", function(stage, id){
+     if (stage == 2) {
+        gTasks.save(id); //push updates back to the datastore
+        gTasks.sync(dsTasks);
+    }
+  });
   gTasks.init();
 
   dsTasks = newPrometDataStore('tasks');
