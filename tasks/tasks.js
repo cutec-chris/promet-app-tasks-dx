@@ -1,14 +1,15 @@
 function RefreshTasks() {
   siTasks.progressOn();
   console.log("Refresh Tasks");
-  gTasks.sync(dsTasks);
+  //gTasks.sync(dsTasks);
   siTasks.progressOff();
 }
 function AddTask() {
   console.log("New Task");
   var aId = gTasks.uid();
-  dsTasks.add({id:aId})
-  gTasks.sync(dsTasks);
+  //dsTasks.add({id:aId})
+  gTasks.addRow(aId,"");
+  //gTasks.sync(dsTasks);
   gTasks.selectCell(gTasks.getRowIndex(aId),1);
   window.setTimeout(function(){
     gTasks.editCell();
@@ -72,15 +73,11 @@ dhtmlxEvent(window,"load",function(){
   gTasks.setColumnMinWidth('100', 2);
   gTasks.setInitWidths('50,*,*,120');
   //gTasks.attachFooter(",,,#stat_max");
-  gTasks.attachEvent("onEditCell", function(stage, id){
-     if (stage == 2) {
-        gTasks.save(id); //push updates back to the datastore
-        gTasks.sync(dsTasks);
-    }
-  });
   gTasks.init();
 
   dsTasks = newPrometDataStore('tasks');
+
+  dsTasks.init(gTasks);
 
   RefreshTasks();
 });
