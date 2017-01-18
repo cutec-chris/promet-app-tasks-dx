@@ -21,6 +21,8 @@ function SetSeen() {
   dsTasks.DataProcessor.setUpdated(gTasks.getSelectedRowId()); //will run data saving for the changed data
 }
 function SetDone() {
+  dsTasks.setCursor(gTasks.getSelectedRowId());
+  dsTasks.item(gTasks.getSelectedRowId()).SEEN = 1;
   gTasks.cells(gTasks.getSelectedRowId(),0).setValue(1);
   dsTasks.DataProcessor.setUpdated(gTasks.getSelectedRowId()); //will run data saving for the changed data
 }
