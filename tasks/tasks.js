@@ -1,15 +1,14 @@
 function RefreshTasks() {
   siTasks.progressOn();
   console.log("Refresh Tasks");
-  //gTasks.sync(dsTasks);
+  gTasks.sync(dsTasks);
   siTasks.progressOff();
 }
 function AddTask() {
   console.log("New Task");
   var aId = gTasks.uid();
-  //dsTasks.add({id:aId})
-  gTasks.addRow(aId,"");
-  //gTasks.sync(dsTasks);
+  dsTasks.add({id:aId})
+  gTasks.sync(dsTasks);
   gTasks.selectCell(gTasks.getRowIndex(aId),1);
   window.setTimeout(function(){
     gTasks.editCell();
@@ -17,7 +16,14 @@ function AddTask() {
     gTasks.setActive();
   },1);
 }
-
+function SetSeen() {
+  //gTasks.cells(gTasks.getSelectedRowId(),0).setValue(some);
+  dsTasks.DataProcessor.setUpdated(gTasks.getSelectedRowId()); //will run data saving for the changed data
+}
+function SetDone() {
+  gTasks.cells(gTasks.getSelectedRowId(),0).setValue(1);
+  dsTasks.DataProcessor.setUpdated(gTasks.getSelectedRowId()); //will run data saving for the changed data
+}
 var siTasks,tbToolbar,gTasks,dsTasks;
 
 dhtmlxEvent(window,"load",function(){
@@ -42,6 +48,10 @@ dhtmlxEvent(window,"load",function(){
       AddTask();
     } else if (id=='refresh') {
       RefreshTasks();
+    } else if (id=='seen') {
+      SetSeen();
+    } else if (id=='done') {
+      SetDone();
     }
 		});
   gTasks = siTasks.attachGrid({parent:"pTasks"});
@@ -77,7 +87,7 @@ dhtmlxEvent(window,"load",function(){
 
   dsTasks = newPrometDataStore('tasks');
 
-  dsTasks.init(gTasks);
+  dsTasks.DataProcessor.init(gTasks);
 
   RefreshTasks();
 });
