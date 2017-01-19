@@ -1,14 +1,15 @@
 function RefreshTasks() {
   siTasks.progressOn();
   console.log("Refresh Tasks");
-  gTasks.sync(dsTasks);
+  dsTasks.FillGrid(gTasks);
   siTasks.progressOff();
 }
 function AddTask() {
   console.log("New Task");
   var aId = gTasks.uid();
-  dsTasks.add({id:aId})
-  gTasks.sync(dsTasks);
+  //dsTasks.add({id:aId})
+  //gTasks.sync(dsTasks);
+  gTasks.addRow(aId,"");
   gTasks.selectCell(gTasks.getRowIndex(aId),1);
   window.setTimeout(function(){
     gTasks.editCell();
@@ -17,14 +18,10 @@ function AddTask() {
   },1);
 }
 function SetSeen() {
-  //gTasks.cells(gTasks.getSelectedRowId(),0).setValue(some);
-  dsTasks.DataProcessor.setUpdated(gTasks.getSelectedRowId()); //will run data saving for the changed data
+  gTasks.cells(gTasks.getSelectedRowId(),4).setValue(1);
 }
 function SetDone() {
-  dsTasks.setCursor(gTasks.getSelectedRowId());
-  dsTasks.item(gTasks.getSelectedRowId()).SEEN = 1;
   gTasks.cells(gTasks.getSelectedRowId(),0).setValue(1);
-  dsTasks.DataProcessor.setUpdated(gTasks.getSelectedRowId()); //will run data saving for the changed data
 }
 var siTasks,tbToolbar,gTasks,dsTasks;
 
@@ -61,9 +58,10 @@ dhtmlxEvent(window,"load",function(){
   //gTasks.enableAutoWidth(true);
   //gTasks.enableAutoHeight(true);
   gTasks.setSizes();
-  gTasks.setHeader(["erledigt","Aufgabe","Projekt","Bis"]);
-  gTasks.setColumnIds('DONE,SUMMARY,PROJECT,DUEDATE')
-  gTasks.setColTypes("ch,edtxt,co,dhxCalendar");
+  gTasks.setHeader(["erledigt","Aufgabe","Projekt","Bis","gesehen"]);
+  gTasks.setColumnIds('DONE,SUMMARY,PROJECT,DUEDATE,SEEN')
+  gTasks.setColTypes("ch,edtxt,co,dhxCalendar,edtxt");
+  gTasks.setColumnHidden(4,true);
   //gTasks.enableEditEvents(false,true,true);
   var cbProject = gTasks.getCombo(2);
   /*
@@ -88,7 +86,6 @@ dhtmlxEvent(window,"load",function(){
   gTasks.init();
 
   dsTasks = newPrometDataStore('tasks');
-
   dsTasks.DataProcessor.init(gTasks);
 
   RefreshTasks();
