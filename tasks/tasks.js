@@ -88,5 +88,5 @@ dhtmlxEvent(window,"load",function(){
   dsTasks = newPrometDataStore('tasks');
   dsTasks.DataProcessor.init(gTasks);
 
-  RefreshTasks();
+  //RefreshTasks();
 });
