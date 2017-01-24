@@ -34,7 +34,7 @@ dhtmlxEvent(window,"load",function(){
       items:[
          {id: "new", type: "button", text: "Neu", img: "fa fa-plus-circle"}
         ,{id: "sep1", type: "separator" }
-        ,{id: "seen", type: "button", text: "gesehen", img: "fa fa-eye"}
+        ,{id: "seen", type: "button", text: "Gesehen", img: "fa fa-eye"}
         ,{id: "done", type: "button", text: "Erledigt", img: "fa fa-check"}
         ,{id: "problem", type: "button", text: "Problem", img: "fa fa-exclamation-triangle"}
         ,{id: "sep1", type: "separator" }
