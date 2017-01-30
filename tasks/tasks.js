@@ -59,7 +59,7 @@ dhtmlxEvent(window,"load",function(){
   //gTasks.enableAutoHeight(true);
   gTasks.setSizes();
   gTasks.setHeader(["erledigt","Aufgabe","Projekt","Bis","gesehen","Reihenfolge"]);
-  gTasks.setColumnIds('DONE,SUMMARY,PROJECT,DUEDATE,SEEN,GPRIORITY')
+  gTasks.setColumnIds('COMPLETED,SUMMARY,PROJECT,DUEDATE,SEEN,GPRIORITY')
   gTasks.setColTypes("ch,edtxt,co,dhxCalendar,edtxt,edtxt");
   gTasks.setColumnHidden(4,true);
   gTasks.setColumnHidden(5,true);
@@ -80,10 +80,7 @@ dhtmlxEvent(window,"load",function(){
   gTasks.enableValidation(false,false,true,false);
   //gTasks.setColValidators(",NotEmpty,,");
   gTasks.setColumnMinWidth('30' , 0);
-  gTasks.setColumnMinWidth('200', 1);
-  gTasks.setColumnMinWidth('200', 2);
-  gTasks.setColumnMinWidth('200', 3);
-  gTasks.setInitWidths('50,*,*,200');
+  gTasks.setInitWidths('50,*,*,70');
   //gTasks.attachFooter(",,,#stat_max");
   gTasks.init();
 
