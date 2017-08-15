@@ -1,8 +1,14 @@
 function RefreshTasks() {
   siTasks.progressOn();
-  console.log("Refresh Tasks");
-  dsTasks.FillGrid(gTasks);
-  siTasks.progressOff();
+  try {
+    console.log("Refresh Tasks");
+    dsTasks.FillGrid(gTasks,'',0,function (){
+      aList.Page.progressOff();
+    });
+  } catch(err) {
+    console.log('Refresh Exception:'+err.message);
+    aList.Page.progressOff();
+  }
 }
 function AddTask() {
   console.log("New Task");
