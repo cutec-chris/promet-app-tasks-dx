@@ -3,11 +3,11 @@ function RefreshTasks() {
   try {
     console.log("Refresh Tasks");
     dsTasks.FillGrid(gTasks,'',0,function (){
-      aList.Page.progressOff();
+      dsTasks.progressOff();
     });
   } catch(err) {
     console.log('Refresh Exception:'+err.message);
-    aList.Page.progressOff();
+    dsTasks.progressOff();
   }
 }
 function AddTask() {
