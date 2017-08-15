@@ -3,11 +3,11 @@ function RefreshTasks() {
   try {
     console.log("Refresh Tasks");
     dsTasks.FillGrid(gTasks,'',0,function (){
-      dsTasks.progressOff();
+      siTasks.progressOff();
     });
   } catch(err) {
     console.log('Refresh Exception:'+err.message);
-    dsTasks.progressOff();
+    siTasks.progressOff();
   }
 }
 function AddTask() {
@@ -93,5 +93,9 @@ dhtmlxEvent(window,"load",function(){
   dsTasks = newPrometDataStore('tasks');
   dsTasks.DataProcessor.init(gTasks);
 
-  //RefreshTasks();
+  window.parent.sbMain.attachEvent("onSelect", function(id, lastId){
+    if (id == 'siTasks') {
+      RefreshTasks();
+    }
+  });
 });
