@@ -83,8 +83,8 @@ dhtmlxEvent(window,"load",function(){
   */
   gTasks.setDateFormat("%d.%m.%Y");
   gTasks.setColSorting('ch,str,str,date');
-  gTasks.enableValidation(false,false,true,false);
-  //gTasks.setColValidators(",NotEmpty,,");
+  gTasks.enableValidation(false);
+  gTasks.setColValidators(",NotEmpty,,");
   gTasks.setColumnMinWidth('30' , 0);
   gTasks.setInitWidths('50,*,*,70');
   //gTasks.attachFooter(",,,#stat_max");
