@@ -31,7 +31,7 @@ function SetDone() {
 }
 var siTasks,tbToolbar,gTasks,dsTasks;
 
-dhtmlxEvent(window,"load",function(){
+window.addEventListener('AfterLogin',function(){
   console.log("Loading Tasks Page...");
   sbMain.addItem({id: 'siTasks', text: 'Aufgaben', icon: ''});
   siTasks = window.parent.sbMain.cells('siTasks');
