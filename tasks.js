@@ -1,7 +1,7 @@
 function RefreshTasks() {
   siTasks.progressOn();
   try {
-    console.log("Refresh Tasks");
+    //console.log("Refresh Tasks");
     dsTasks.FillGrid(gTasks,'',0,function (){
       siTasks.progressOff();
     });
