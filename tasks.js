@@ -99,3 +99,7 @@ window.addEventListener('AfterLogin',function(){
     }
   });
 });
+window.addEventListener('AfterLogout',function(){
+  gTasks.destructor();
+  siTasks.remove();
+});
