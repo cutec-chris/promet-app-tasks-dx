@@ -129,7 +129,7 @@ begin
         dv.add(DataSet.ActiveRecord);
       DataSet.Next;
     end;
-  writeln('Progess off');
+  console.log('Progess off');
   DataSet.EnableControls;
 end;
 
